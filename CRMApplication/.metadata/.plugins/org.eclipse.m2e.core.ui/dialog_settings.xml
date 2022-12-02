@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="MavenProjectImportWizardPage">
+		<list key="rootDirectory">
+			<item value="C:\Users\Varuna\Downloads\serenity-junit-starter-master (1)"/>
+			<item value="C:\Users\Varuna\Downloads\serenity-junit-starter-master"/>
+			<item value="C:\Users\Varuna\Downloads\spring-boot-cucumber-master\spring-boot-cucumber-master"/>
+			<item value="C:\Users\Varuna\Downloads\spring-boot-thymeleaf-master"/>
+			<item value="C:\Users\Varuna\Downloads\SeleniumDataDrivenTest-JSON-master\SeleniumDataDrivenTest-JSON-master"/>
+			<item value="D:\OSV_TestAutomation\CRMApplication\CRMApplication"/>
+			<item value="C:\Users\Varuna\Downloads\VJA\as capstone (1)"/>
+			<item value="C:\Users\Varuna\Downloads\capstone (2)\capstone\capstone"/>
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+	</section>
+	<section name="MavenProjectWizardLocationPage">
+		<list key="location">
+			<item value="D:\OSV_TestAutomation\CRMApplication\CRMApplication"/>
+			<item value="D:\OSV_TestAutomation\CRMApplication\CRMApplication\src\test\resources\practice\Loginuser.feature"/>
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+	</section>
+	<section name="MavenProjectWizardArchetypePage">
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+	</section>
+	<section name="Maven2ProjectWizardArchifactPage">
+		<list key="package">
+		</list>
+		<list key="groupId">
+		</list>
+		<list key="artifactId">
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+		<list key="version">
+			<item value="0.0.1-SNAPSHOT"/>
+		</list>
+	</section>
+	<section name="MavenProjectWizardArtifactPage">
+		<list key="groupId">
+			<item value="practice"/>
+			<item value="Sample"/>
+			<item value="OSV"/>
+			<item value="JAVA"/>
+		</list>
+		<list key="name">
+		</list>
+		<list key="artifactId">
+			<item value="javaprogram1"/>
+			<item value="javaprogram"/>
+			<item value="Testng"/>
+			<item value="OneBankView"/>
+			<item value="JAVAEight"/>
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+		<list key="version">
+			<item value="0.0.1-SNAPSHOT"/>
+		</list>
+	</section>
+	<section name="org.eclipse.m2e.core.pom.overview">
+	</section>
+	<section name="org.eclipse.m2e.core.pom.dependencies">
+	</section>
+</section>

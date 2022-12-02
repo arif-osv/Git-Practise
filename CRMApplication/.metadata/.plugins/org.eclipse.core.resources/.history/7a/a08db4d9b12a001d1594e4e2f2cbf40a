@@ -1,0 +1,873 @@
+package com.qa.uat.pages;
+
+import static org.junit.Assert.assertTrue;
+
+import java.util.List;
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
+
+import com.qa.factory.DriverFactory;
+import com.qa.util.AssertionMethods;
+import com.qa.util.BaseTest;
+import com.qa.util.Seleniumutility;
+import com.qa.util.WaitFunctions;
+
+public class paymentpage  {
+
+	private WebDriver driver;
+	WaitFunctions w = new WaitFunctions();
+
+	AssertionMethods assertions = new AssertionMethods(DriverFactory.getDriver());
+
+
+	public paymentpage(WebDriver driver) {
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
+	}
+
+	@FindBy(xpath = "//nav/ul/li/a[contains(@href,'/payments')]")
+	WebElement paymentlink;
+
+	@FindBy(xpath = "//a[@href='/payments/bulkTransfers']")
+	WebElement bulktransfer;
+
+	@FindBy(xpath = "(//a[normalize-space()='Upload payments'])[1]")
+	WebElement uploadbulk;
+
+	@FindBy(xpath = "//ul[@class='flex']//a[contains(text(),'payments')]")
+	public static WebElement payment;
+
+	@FindBy(partialLinkText = "Transfers")
+	public static WebElement transfers;
+
+	@FindBy(xpath = "//h4[contains(text(),'Create payment')]")
+	public static WebElement QuickPayment;
+
+	@FindBy(partialLinkText = "Schedule payments")
+	public static WebElement Schedulepayment;
+
+	@FindBy(css = "a[class='activeSubMenu']")
+	public static WebElement Scheduletransfertab;
+
+	@FindBy(partialLinkText = "Same bank")
+	public static WebElement samebank;
+
+	@FindBy(xpath = "//button[normalize-space()='+ Create payment']")
+	public static WebElement createpayment;
+
+	@FindBy(xpath = "//input[@name='transfer_type'][@value='SWIFT']")
+	public static WebElement Swiftpayment;
+
+	@FindBy(xpath = "//button[@class='btn createBtn ']")
+	public static WebElement CreateSchedulepayment;
+
+	@FindBy(xpath = "(//div[@class='name-select__value-container css-1hwfws3'])[1]")
+	public static WebElement fromac;
+
+	@FindBy(xpath = "//div[@class='isDropdownPlaceholder']")
+	public static WebElement debitaccount;
+
+	@FindBy(xpath = "//div[contains(text(),'SAR')]")
+	public static WebElement Currency;
+
+	@FindBy(xpath = "//div[@class='selectOptionFont css-2b097c-container']//*[contains(text(),'204000010006085129123')]")
+	public static WebElement fromacno;
+
+	@FindBy(xpath = "//div[@class='selectOptionFont css-2b097c-container']//*[contains(text(),'SA7580000260752019000935')]")
+	public static WebElement samebankacno;
+
+	// By Header=By.xpath("//div[@class='selectOptionFont
+	// css-2b097c-container']//*[contains(text(),"+Fromac+")]");
+
+	@FindBy(xpath = ("//input[@name='beneficiaryaccount']//preceding-sibling::div"))
+	public static WebElement benfone;
+
+	//@FindBy(xpath = "//label[text()='Beneficiary account']//following-sibling::div/div/div/div/div[text()='Select']")
+	
+	@FindBy(xpath="//label[text()='Beneficiary account']//following-sibling::div/div/div")
+	public static WebElement beneficiryac;
+
+	@FindBy(xpath = ("//input[@name='debitAccount']//preceding-sibling::div"))
+	public static WebElement benf;
+
+	@FindBy(xpath = ("//div[@class='selectOptionFont css-2b097c-container']//*[contains(text(),'204000010006085129115')]"))
+	public static WebElement benfno;
+
+	@FindBy(xpath = ("//div[@class='selectOptionFont css-2b097c-container']//*[contains(text(),'204000010006085129123')]"))
+	public static WebElement credacno;
+
+	@FindBy(name = "amount")
+	public static WebElement amount;
+
+	@FindBy(xpath = "//div[contains(text(),'How often?')]")
+	public WebElement howoften;
+
+	@FindBy(xpath = "//div[@class='name-select__value-container css-1d8n9bt']")
+	public static WebElement POR;
+
+	@FindBy(xpath = "//div[@class='selectOptionFont css-2b097c-container']//*[contains(text(),'Travel Requirements')]")
+	public static WebElement PORcode;
+
+	@FindBy(xpath = "//div[@class='formControl']//textarea")
+	public static WebElement testarea;
+	
+	@FindBy(xpath="//div[@class='selectOptionFont css-b62m3t-container']//*[contains(text(),'Travel Requirements')]|//div[@class='selectOptionFont css-2b097c-container']//*[contains(text(),'Business:Payroll')]|//div[@class='selectOptionFont css-2b097c-container']//*[contains(text(),'Allowance')]")
+	public static WebElement PORCODEs;
+
+	@FindBy(xpath="//div[@class='selectOptionFont css-b62m3t-container']//*[contains(text(),'Travel Requirements')]")
+	public static WebElement PORCODE;
+	
+	@FindBy(xpath = "//body/div[@id='root']/div[1]/div[4]/div[1]/div[1]/div[1]/div[2]/span[1]")
+	WebElement closepopup;
+
+	@FindBy(xpath = "//div[@class='createPaymentBody']//div[2]//div//button[1]")
+	public static WebElement addpayment;
+
+	@FindBy(xpath = "//button[contains(text(),'Schedule payment')]")
+	public static WebElement schedulepaybutton;
+
+	@FindBy(xpath = "(//input[contains(@type,'checkbox')])[2]")
+	public static WebElement checkBoxone;
+
+	@FindBy(xpath = "(//input[contains(@type,'checkbox')])[4]")
+	public static WebElement checkBoxtwo;
+
+	@FindBy(xpath = "(//input[contains(@type,'checkbox')])[5]")
+	public static WebElement checkBoxthree;
+
+	@FindBy(xpath = "//button[contains(text(),'Proceed')]")
+	public static WebElement Proceed;
+
+	@FindBy(xpath = "//button[normalize-space()='Approve']")
+	public static WebElement Approve;
+
+	@FindBy(xpath = "//button[@type='submit']")
+	public static WebElement Approvesecondbutton;
+
+	@FindBy(xpath = "//div[@class='chooseOtpAuth']")
+	public static WebElement Authentication;
+
+	@FindBy(xpath = "//input[@name='otp']")
+	public static WebElement otp;
+
+	@FindBy(xpath = "//i[@class='icon icon-down-arrow']")
+	public static WebElement DatatableArrow;
+
+	@FindBy(xpath = "//div[contains(@class,'table-th schedulePayStatus')]//div[2]//input[1]")
+	public static WebElement MonthlySection;
+
+	@FindBy(xpath = "//span[@class='tableDataSubTitle dateTimeColor']//span")
+	public static WebElement Monthdata;
+
+	@FindBy(xpath = "//span[@class='filterBtn']//span[2]")
+	public static WebElement Monthdatapopup;
+
+	@FindBy(xpath = "//input[@placeholder='Search beneficiary name']")
+	public static WebElement Beneficiryname;
+
+	@FindBy(partialLinkText = "Beneficiary accounts")
+	public static WebElement BeneficiryAccount;
+
+	@FindBy(partialLinkText = "Beneficiary accounts")
+	 WebElement Beneficiryac;
+
+	@FindBy(xpath = "//div[@class='tableBody']//div[2]//div[6]//span[2]")
+	 WebElement amounttag;
+
+	@FindBy(xpath = "//textarea[@name='comments']")
+	 WebElement Commentsbox;
+
+	@FindBy(xpath = "//button[@type='submit']")
+	 WebElement Submitbutton;
+
+	@FindBy(xpath = "//div[@class='actionSection']//div")
+	 WebElement dotcursor;
+
+	@FindBy(linkText = "History")
+	 WebElement historytab;
+
+	@FindBy(xpath = "//div[@class='transcationTooltip']//div//ul//li[1]")
+	static WebElement approvebutton;
+
+	static Random random = new Random();
+	public static int num = random.nextInt(90) + 10;
+	public static String a = "";
+
+	public void usercreatepay() {
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
+		w.waitForElement(payment);
+		Assert.assertEquals(true, payment.isDisplayed());
+		w.Elementtobeclickabe(payment).click();
+		
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		
+		
+		  boolean searchIconPresence = driver.findElement(By.xpath(
+		  "/html/body/div/div/div[4]/div/div/div/div[2]/span")).isDisplayed(); //
+			if (searchIconPresence == true) { // click on the search button
+				WebElement searchIcon = driver
+						.findElement(By.xpath("/html/body/div/div/div[4]/div/div/div/div[2]/span"));
+				searchIcon.click();
+			} else {
+
+			}
+
+	}
+	public void schedulepayment()
+	{
+		
+		Schedulepayment.click();
+		CreateSchedulepayment.click();
+	
+	}
+
+	public void transfer() {
+		
+		List<WebElement> li = DriverFactory.getDriver().findElements(By.xpath("//div[@class='isFlex']/div/nav/ul/li/a"));
+		
+		Seleniumutility.clickanelementinlist(li, "Transfers");
+		w.waitForElement(transfers);
+		Assert.assertEquals(true, transfers.isDisplayed());
+		w.Elementtobeclickabe(transfers).click();
+
+		w.waitForElement(BeneficiryAccount);
+		Assert.assertEquals(true, BeneficiryAccount.isDisplayed());
+		w.Elementtobeclickabe(BeneficiryAccount).click();
+
+		w.waitForElement(createpayment);
+		Assert.assertEquals(true, createpayment.isDisplayed());
+		w.Elementtobeclickabe(createpayment).click();
+	}
+
+	public void createpaymentlink() {
+		w.waitForElement(createpayment);
+		Assert.assertEquals(true, createpayment.isDisplayed());
+		w.Elementtobeclickabe(createpayment).click();
+	}
+
+	public void Transfertype(String Transfertype) throws InterruptedException {
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		
+		
+		/*
+		 * boolean searchIconPresence = driver.findElement(By.xpath(
+		 * "/html/body/div/div/div[4]/div/div/div/div[2]/span")).isDisplayed(); //
+		 * boolean searchIconEnabled = driver.findElement(By.xpath(
+		 * "/html/body/div/div/div[5]/div/div/div/div[2]/span")).isEnabled(); if
+		 * (searchIconEnabled == true) { // click on the search button WebElement
+		 * searchIcon = driver .findElement(By.
+		 * xpath("//button[@class='createBtn']/following-sibling :: span"));
+		 * searchIcon.click(); } else {
+		 * 
+		 * }
+		 * 
+		 * if (searchIconPresence == true) { // click on the search button WebElement
+		 * searchIcon = driver
+		 * .findElement(By.xpath("/html/body/div/div/div[4]/div/div/div/div[2]/span"));
+		 * searchIcon.click(); } else {
+		 * 
+		 * }
+		 */			
+			Thread.sleep(2000);
+
+			driver.findElement(By.xpath("//input[@name='transfer_type'][@value='" + Transfertype + "']")).click();
+
+	}
+
+	
+	
+	public void Alinamcreatepayment(String bankName, String debitNumber) throws InterruptedException
+
+	{
+
+
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
+		w.waitForElement(debitaccount);
+		Assert.assertEquals(true, debitaccount.isDisplayed());
+		w.Elementtobeclickabe(debitaccount).click();
+
+		if (bankName.equalsIgnoreCase("ALRAJHI") || bankName.equalsIgnoreCase("SABB")
+				|| bankName.equalsIgnoreCase("RIYAD")) {
+			System.out.println("Selected bank account is " + bankName);
+			driver.findElement(By.xpath("//div[@title='" + bankName + "']//following-sibling :: div")).click();
+			Thread.sleep(5000);
+
+			List<WebElement> li = driver.findElements(By.xpath("//div[@class='benAccNum']"));
+			for (int i = 0; i < li.size(); i++) {
+				String accountno = li.get(i).getText();
+				System.err.println("Account numbers are " + accountno);
+				if (debitNumber.contains(accountno)) {
+					li.get(i).click();
+					break;
+				}
+			}
+		} else {
+			WebElement Debitaccount = driver.findElement(By.xpath("//*[contains(text(),'" + debitNumber + "')]"));
+
+			w.waitForElement(Debitaccount);
+			Assert.assertEquals(true, Debitaccount.isDisplayed());
+			w.Elementtobeclickabe(Debitaccount).click();
+
+		}
+
+	}
+	public void createpayment(String bankName, String debitNumber, String creditAccountNumber)
+			throws InterruptedException {
+
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
+		w.waitForElement(debitaccount);
+		Assert.assertEquals(true, debitaccount.isDisplayed());
+		w.Elementtobeclickabe(debitaccount).click();
+
+		if (bankName.equalsIgnoreCase("ALRAJHI") || bankName.equalsIgnoreCase("SABB")
+				|| bankName.equalsIgnoreCase("RIYAD")) {
+			System.out.println("Selected bank account is " + bankName);
+			driver.findElement(By.xpath("//div[@title='" + bankName + "']//following-sibling :: div")).click();
+			Thread.sleep(10000);
+
+			List<WebElement> li = driver.findElements(By.xpath("//div[@class='benAccNum']"));
+			for (int i = 0; i < li.size(); i++) {
+				String accountno = li.get(i).getText();
+				System.err.println("Account numbers are " + accountno);
+				if (debitNumber.contains(accountno)) {
+					li.get(i).click();
+					break;
+				}
+			}
+		} else {
+			WebElement Debitaccount = driver.findElement(By.xpath("//*[contains(text(),'" + debitNumber + "')]"));
+
+			w.waitForElement(Debitaccount);
+			Assert.assertEquals(true, Debitaccount.isDisplayed());
+			w.Elementtobeclickabe(Debitaccount).click();
+
+		}
+
+		w.waitForElement(beneficiryac);
+		Assert.assertEquals(true, beneficiryac.isDisplayed());
+		Thread.sleep(2000);
+		w.Elementtobeclickabe(beneficiryac).click();
+
+		WebElement Debitaccount = driver.findElement(By.xpath("//*[contains(text(),'" + creditAccountNumber + "')]"));
+
+		w.waitForElement(Debitaccount);
+		Assert.assertEquals(true, Debitaccount.isDisplayed());
+		w.Elementtobeclickabe(Debitaccount).click();
+
+		if (bankName.equalsIgnoreCase("HDFC") || bankName.equalsIgnoreCase("YES") || bankName.equalsIgnoreCase("ICICI"))
+
+		{
+
+			if (bankName.equals("HDFC")) {
+
+				Thread.sleep(2000);
+				driver.findElement(By.xpath("//div[@class=' css-1wa3eu0-placeholder']")).click();
+				driver.findElement(
+						By.xpath("//div[@class='selectOptionFont css-2b097c-container']//*[contains(text(),'NEFT')]"))
+						.click();
+			} else if (bankName.equalsIgnoreCase("YesBank")) {
+
+				Thread.sleep(2000);
+				driver.findElement(By.xpath("//div[@class=' css-1wa3eu0-placeholder']")).click();
+				driver.findElement(
+						By.xpath("//div[@class='selectOptionFont css-2b097c-container']//*[contains(text(),'RTGS')]"))
+						.click();
+			} else if (bankName.equalsIgnoreCase("ICICI")) {
+
+				Thread.sleep(2000);
+				driver.findElement(By.xpath("//div[@class=' css-1wa3eu0-placeholder']")).click();
+				driver.findElement(
+						By.xpath("//div[@class='selectOptionFont css-2b097c-container']//*[contains(text(),'IMPS')]"))
+						.click();
+			}
+
+		}
+
+		w.waitForElement(amount);
+		w.Elementtobeclickabe(amount).click();
+		int num = random.nextInt(90) + 10;
+		amount.sendKeys(Integer.toString(num));
+		
+		//try range
+		
+		/*
+		 * if (DriverFactory.getDriver().findElement(By.
+		 * xpath("//label[contains(text(),'Select range')]")).isDisplayed()==true) {
+		 * 
+		 * System.out.println("Range management displayed"); By PORCODE = By.xpath(
+		 * "//div[@class='selectOptionFont css-2b097c-container']//*[contains(text(),'India')]|//div[@class='selectOptionFont css-2b097c-container']//*[contains(text(),'Saudi Arabia')]"
+		 * ); POR.click(); driver.findElement(PORCODE).click();
+		 * 
+		 * }
+		 * 
+		 */		
+		
+		
+
+		if (bankName.equalsIgnoreCase("ALRAJHI") || bankName.equalsIgnoreCase("SABB")
+				|| bankName.equalsIgnoreCase("NCB")||(bankName.equalsIgnoreCase("SNB"))) {
+			//By PORCODE = By.xpath(
+				//	"//div[@class='selectOptionFont css-b62m3t-container']//*[contains(text(),'Travel Requirements')]|//div[@class='selectOptionFont css-2b097c-container']//*[contains(text(),'Business:Payroll')]|//div[@class='selectOptionFont css-2b097c-container']//*[contains(text(),'Allowance')]");
+			POR.click();
+			w.waitForElement(PORCODE);
+		
+			try {
+				//Actions act =  new Actions(driver);
+				//act.moveToElement(PORCODE).click().perform();
+				 JavascriptExecutor executor = (JavascriptExecutor) driver;
+			     executor.executeScript("arguments[0].click();",PORCODE);
+			  
+				
+			  } catch (Exception e) {
+			     JavascriptExecutor executor = (JavascriptExecutor) driver;
+			     executor.executeScript("arguments[0].click();",PORCODE);
+			  }
+		}
+
+		w.waitForElement(testarea);
+		w.Elementtobeclickabe(testarea).sendKeys("Testing");
+
+	}
+	public void spiltpayment(String bankName, String debitNumber, String creditAccountNumber)
+			throws InterruptedException
+	{
+
+
+		
+		w.waitForElementvisible(By.xpath("//div[@class='isDropdownPlaceholder']"));
+		//Assert.assertEquals(true, debitaccount.isDisplayed());
+		w.Elementtobeclickabe(debitaccount).click();
+
+		if (bankName.equalsIgnoreCase("ALRAJHI") || bankName.equalsIgnoreCase("SABB")
+				|| bankName.equalsIgnoreCase("RIYAD")) {
+			System.out.println("Selected bank account is " + bankName);
+			driver.findElement(By.xpath("//div[@title='" + bankName + "']//following-sibling :: div")).click();
+			
+			List<WebElement> li = driver.findElements(By.xpath("//div[@class='benAccNum']"));
+			for (int i = 0; i < li.size(); i++) {
+				String accountno = li.get(i).getText();
+				System.err.println("Account numbers are " + accountno);
+				if (debitNumber.contains(accountno)) {
+					li.get(i).click();
+					break;
+				}
+			}
+		} else {
+			WebElement Debitaccount = driver.findElement(By.xpath("//*[contains(text(),'" + debitNumber + "')]"));
+
+			w.waitForElement(Debitaccount);
+			Assert.assertEquals(true, Debitaccount.isDisplayed());
+			w.Elementtobeclickabe(Debitaccount).click();
+
+		}
+
+		/*
+		 * w.waitForElement(beneficiryac); Assert.assertEquals(true,
+		 * beneficiryac.isDisplayed()); Thread.sleep(5000);
+		 * w.Elementtobeclickabe(beneficiryac).click();
+		 * 
+		 * WebElement Debitaccount = driver.findElement(By.xpath("//*[contains(text(),'"
+		 * + creditAccountNumber + "')]"));
+		 * 
+		 * w.waitForElement(Debitaccount); Assert.assertEquals(true,
+		 * Debitaccount.isDisplayed()); w.Elementtobeclickabe(Debitaccount).click();
+		 */
+		if (bankName.equalsIgnoreCase("HDFC") || bankName.equalsIgnoreCase("YES") || bankName.equalsIgnoreCase("ICICI"))
+
+		{
+
+			if (bankName.equals("HDFC")) {
+
+				Thread.sleep(2000);
+				driver.findElement(By.xpath("//div[@class=' css-1wa3eu0-placeholder']")).click();
+				driver.findElement(
+						By.xpath("//div[@class='selectOptionFont css-2b097c-container']//*[contains(text(),'NEFT')]"))
+						.click();
+			} else if (bankName.equalsIgnoreCase("YesBank")) {
+
+				Thread.sleep(2000);
+				driver.findElement(By.xpath("//div[@class=' css-1wa3eu0-placeholder']")).click();
+				driver.findElement(
+						By.xpath("//div[@class='selectOptionFont css-2b097c-container']//*[contains(text(),'RTGS')]"))
+						.click();
+			} else if (bankName.equalsIgnoreCase("ICICI")) {
+
+				Thread.sleep(2000);
+				driver.findElement(By.xpath("//div[@class=' css-1wa3eu0-placeholder']")).click();
+				driver.findElement(
+						By.xpath("//div[@class='selectOptionFont css-2b097c-container']//*[contains(text(),'IMPS')]"))
+						.click();
+			}
+
+		}
+System.out.println("enter amount");
+JavascriptExecutor j = (JavascriptExecutor)driver;
+
+
+//DriverFactory.getDriver().findElement(By.xpath("//label[@for='amount']//following-sibling::input")).click();
+
+
+
+
+WebElement inputField = DriverFactory.getDriver().findElement(By.xpath("//label[@for='amount']//following-sibling::input"));
+inputField.click();
+inputField.sendKeys("10");
+//String inputValue = "100";
+
+//j.executeScript("arguments[0].setAttribute('value', '" + inputValue +"')", inputField);
+Thread.sleep(2000);
+By addbut=By.xpath("//button[contains(text(),'+ Add one more account')]");
+Boolean f =WaitFunctions.isElementPresent(addbut) ;
+if(f==true)
+{
+	System.out.println("click");
+	DriverFactory.getDriver().findElement(addbut).click();
+
+}
+else
+{
+	System.out.println("no click element");
+}
+
+	
+
+
+		if (DriverFactory.getDriver().findElement(By.xpath("//label[contains(text(),'Select range')]")).isDisplayed()==true) {
+			
+			System.out.println("Range management displayed");
+			By PORCODE = By.xpath(
+					"//div[@class='selectOptionFont css-2b097c-container']//*[contains(text(),'India')]|//div[@class='selectOptionFont css-2b097c-container']//*[contains(text(),'Saudi Arabia')]");
+			POR.click();
+			driver.findElement(PORCODE).click();
+
+		}
+
+		
+		
+		
+
+		if (bankName.equalsIgnoreCase("ALRAJHI") || bankName.equalsIgnoreCase("SABB")
+				|| bankName.equalsIgnoreCase("NCB")||(bankName.equalsIgnoreCase("SNB"))) {
+			By PORCODE = By.xpath(
+					"//div[@class='selectOptionFont css-2b097c-container']//*[contains(text(),'Travel Requirements')]|//div[@class='selectOptionFont css-2b097c-container']//*[contains(text(),'Business:Payroll')]|//div[@class='selectOptionFont css-2b097c-container']//*[contains(text(),'Allowance')]");
+			POR.click();
+			driver.findElement(PORCODE).click();
+
+		}
+
+		w.waitForElement(testarea);
+		w.Elementtobeclickabe(testarea).click();
+		w.Elementtobeclickabe(testarea).sendKeys("اختباراتاختبارات");
+
+	
+	}
+	
+	
+	public void bulkamount(String bankName, String debitNumber, String creditAccountNumber) throws InterruptedException
+	{
+
+
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
+		w.waitForElement(debitaccount);
+		Assert.assertEquals(true, debitaccount.isDisplayed());
+		w.Elementtobeclickabe(debitaccount).click();
+
+		if (bankName.equalsIgnoreCase("ALRAJHI") || bankName.equalsIgnoreCase("SABB")
+				|| bankName.equalsIgnoreCase("RIYAD")) {
+			System.out.println("Selected bank account is " + bankName);
+			driver.findElement(By.xpath("//div[@title='" + bankName + "']//following-sibling :: div")).click();
+			Thread.sleep(10000);
+
+			List<WebElement> li = driver.findElements(By.xpath("//div[@class='benAccNum']"));
+			for (int i = 0; i < li.size(); i++) {
+				String accountno = li.get(i).getText();
+				System.err.println("Account numbers are " + accountno);
+				if (debitNumber.contains(accountno)) {
+					li.get(i).click();
+					break;
+				}
+			}
+		} else {
+			WebElement Debitaccount = driver.findElement(By.xpath("//*[contains(text(),'" + debitNumber + "')]"));
+
+			w.waitForElement(Debitaccount);
+			Assert.assertEquals(true, Debitaccount.isDisplayed());
+			w.Elementtobeclickabe(Debitaccount).click();
+
+		}
+
+		w.waitForElement(beneficiryac);
+		Assert.assertEquals(true, beneficiryac.isDisplayed());
+		w.Elementtobeclickabe(beneficiryac).click();
+
+		WebElement Debitaccount = driver.findElement(By.xpath("//*[contains(text(),'" + creditAccountNumber + "')]"));
+
+		w.waitForElement(Debitaccount);
+		Assert.assertEquals(true, Debitaccount.isDisplayed());
+		w.Elementtobeclickabe(Debitaccount).click();
+
+		if (bankName.equalsIgnoreCase("HDFC") || bankName.equalsIgnoreCase("YES") || bankName.equalsIgnoreCase("ICICI"))
+
+		{
+
+			if (bankName.equals("HDFC")) {
+
+				Thread.sleep(2000);
+				driver.findElement(By.xpath("//div[@class=' css-1wa3eu0-placeholder']")).click();
+				driver.findElement(
+						By.xpath("//div[@class='selectOptionFont css-2b097c-container']//*[contains(text(),'NEFT')]"))
+						.click();
+			} else if (bankName.equalsIgnoreCase("YesBank")) {
+
+				Thread.sleep(2000);
+				driver.findElement(By.xpath("//div[@class=' css-1wa3eu0-placeholder']")).click();
+				driver.findElement(
+						By.xpath("//div[@class='selectOptionFont css-2b097c-container']//*[contains(text(),'RTGS')]"))
+						.click();
+			} else if (bankName.equalsIgnoreCase("ICICI")) {
+
+				Thread.sleep(2000);
+				driver.findElement(By.xpath("//div[@class=' css-1wa3eu0-placeholder']")).click();
+				driver.findElement(
+						By.xpath("//div[@class='selectOptionFont css-2b097c-container']//*[contains(text(),'IMPS')]"))
+						.click();
+			}
+
+		}
+
+		w.waitForElement(amount);
+		w.Elementtobeclickabe(amount).click();
+		int num = random.nextInt(90) + 10;
+		amount.sendKeys("200000");
+
+		if (bankName.equalsIgnoreCase("ALRAJHI") || bankName.equalsIgnoreCase("SABB")
+				|| bankName.equalsIgnoreCase("NCB")) {
+			By PORCODE = By.xpath(
+					"//div[@class='selectOptionFont css-2b097c-container']//*[contains(text(),'Travel Requirements')]|//div[@class='selectOptionFont css-2b097c-container']//*[contains(text(),'Business:Payroll')]|//div[@class='selectOptionFont css-2b097c-container']//*[contains(text(),'Allowance')]");
+			POR.click();
+			driver.findElement(PORCODE).click();
+
+		}
+
+		w.waitForElement(testarea);
+		w.Elementtobeclickabe(testarea).click();
+		w.Elementtobeclickabe(testarea).sendKeys("اختباراتاختبارات");
+
+	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		public void SchedulePayment(String bankName,String schedule, String debitNumber, String creditAccountNumber)
+				throws InterruptedException {
+			driver.manage().timeouts().implicitlyWait(45, TimeUnit.SECONDS);
+			
+
+			
+			  boolean searchIconPresence = driver.findElement(By.xpath(
+					  "/html/body/div/div/div[4]/div/div/div/div[2]/span")).isDisplayed(); //
+					  boolean searchIconEnabled = driver.findElement(By.xpath(
+					  "/html/body/div/div/div[4]/div/div/div/div[2]/span")).isEnabled();
+					  
+						if (searchIconPresence == true) { // click on the search button
+							WebElement searchIcon = driver
+									.findElement(By.xpath("/html/body/div/div/div[4]/div/div/div/div[2]/span"));
+							searchIcon.click();
+						} else {
+
+						}
+						Thread.sleep(2000);
+
+
+			w.waitForElement(debitaccount);
+			Assert.assertEquals(true, debitaccount.isDisplayed());
+			w.Elementtobeclickabe(debitaccount).click();
+
+			if (bankName.equalsIgnoreCase("ALRAJHI") || bankName.equalsIgnoreCase("SABB")
+					|| bankName.equalsIgnoreCase("RIYAD")) {
+				System.out.println("Selected bank account is " + bankName);
+				driver.findElement(By.xpath("//div[@title='" + bankName + "']//following-sibling :: div")).click();
+				Thread.sleep(10000);
+
+				List<WebElement> li = driver.findElements(By.xpath("//div[@class='benAccNum']"));
+				for (int i = 0; i < li.size(); i++) {
+					String accountno = li.get(i).getText();
+					System.err.println("Account numbers are " + accountno);
+					if (debitNumber.contains(accountno)) {
+						li.get(i).click();
+						break;
+					}
+				}
+			} else {
+				WebElement Debitaccount = driver.findElement(By.xpath("//*[contains(text(),'" + debitNumber + "')]"));
+
+				w.waitForElement(Debitaccount);
+				Assert.assertEquals(true, Debitaccount.isDisplayed());
+				w.Elementtobeclickabe(Debitaccount).click();
+
+			}
+
+			w.waitForElement(benfone);
+			Assert.assertEquals(true, benfone.isDisplayed());
+			w.Elementtobeclickabe(benfone).click();
+
+			WebElement Debitaccount = driver.findElement(By.xpath("//*[contains(text(),'" + creditAccountNumber + "')]"));
+
+			w.waitForElement(Debitaccount);
+			Assert.assertEquals(true, Debitaccount.isDisplayed());
+			w.Elementtobeclickabe(Debitaccount).click();
+
+			if (bankName.equalsIgnoreCase("HDFC") || bankName.equalsIgnoreCase("YES") || bankName.equalsIgnoreCase("ICICI"))
+
+			{
+
+				if (bankName.equals("HDFC")) {
+
+					Thread.sleep(2000);
+					driver.findElement(By.xpath("//div[@class=' css-1wa3eu0-placeholder']")).click();
+					driver.findElement(
+							By.xpath("//div[@class='selectOptionFont css-2b097c-container']//*[contains(text(),'NEFT')]"))
+							.click();
+				} else if (bankName.equalsIgnoreCase("YesBank")) {
+
+					Thread.sleep(2000);
+					driver.findElement(By.xpath("//div[@class=' css-1wa3eu0-placeholder']")).click();
+					driver.findElement(
+							By.xpath("//div[@class='selectOptionFont css-2b097c-container']//*[contains(text(),'RTGS')]"))
+							.click();
+				} else if (bankName.equalsIgnoreCase("ICICI")) {
+
+					Thread.sleep(2000);
+					driver.findElement(By.xpath("//div[@class=' css-1wa3eu0-placeholder']")).click();
+					driver.findElement(
+							By.xpath("//div[@class='selectOptionFont css-2b097c-container']//*[contains(text(),'IMPS')]"))
+							.click();
+				}
+
+			}
+
+			w.waitForElement(amount);
+			w.Elementtobeclickabe(amount).click();
+			int num = random.nextInt(90) + 10;
+			amount.sendKeys(Integer.toString(num));
+			
+			if(schedule.equalsIgnoreCase("Weekly"))
+			{
+				howoften.click();
+				Thread.sleep(2000);
+				driver.findElement(By.xpath("//div[contains(text(),'Weekly')]")).click();
+				Thread.sleep(2000);
+				driver.findElement(By.xpath("//div[contains(text(),'Select...')]")).click();
+				Thread.sleep(2000);
+				driver.findElement(By.xpath("//div[contains(text(),'Mon')]")).click();
+
+			}
+			else if(schedule.equalsIgnoreCase("Monthly"))
+			{
+				howoften.click();
+				Thread.sleep(2000);
+				driver.findElement(By.xpath("//div[contains(text(),'Monthly')]")).click();
+				Thread.sleep(2000);
+				driver.findElement(By.xpath("//div[contains(text(),'Select...')]")).click();
+				Thread.sleep(2000);
+				driver.findElement(By.xpath("//form[1]/div[1]/div[1]/div[1]/div[1]/div[5]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]"))
+						.click();
+
+			}
+			else if(schedule.equalsIgnoreCase("Yearly"))
+			{
+				howoften.click();
+				Thread.sleep(2000);
+				driver.findElement(By.xpath("//div[contains(text(),'Yearly')]")).click();
+				Thread.sleep(2000);
+				//driver.findElement(By.xpath("//div[contains(text(),'Select...')]")).click();
+				Thread.sleep(2000);
+			
+				
+			}
+
+			if (bankName.equalsIgnoreCase("ALRAJHI") || bankName.equalsIgnoreCase("SABB")
+					|| bankName.equalsIgnoreCase("NCB")) {
+				By PORCODE = By.xpath(
+						"//div[@class='selectOptionFont css-2b097c-container']//*[contains(text(),'Travel Requirements')]|//div[@class='selectOptionFont css-2b097c-container']//*[contains(text(),'Business:Payroll')]|//div[@class='selectOptionFont css-2b097c-container']//*[contains(text(),'Allowance')]");
+				POR.click();
+				driver.findElement(PORCODE).click();
+
+			}
+
+			w.waitForElement(testarea);
+			w.Elementtobeclickabe(testarea).click();
+			w.Elementtobeclickabe(testarea).sendKeys("testing");
+
+		
+			
+						Thread.sleep(2000);
+		
+			schedulepaybutton.click();
+			Thread.sleep(2000);
+
+			
+		}
+
+	public void Editamount() throws InterruptedException
+	{
+		w.waitForElement(amount);
+		w.Elementtobeclickabe(amount).click();
+		int num = random.nextInt(90) + 10;
+		amount.sendKeys(Integer.toString(num));
+		Thread.sleep(2000);
+		
+	schedulepaybutton.click();
+
+	}
+	
+	
+
+	public void Addtopaymentbuttondirect() throws InterruptedException {
+		w.waitForElement(addpayment);
+		Assert.assertEquals(true, addpayment.isDisplayed());
+		w.Elementtobeclickabe(addpayment).click();
+		Thread.sleep(4000);
+
+	}
+
+	public void Addtopaymentbutton()
+
+	{
+
+		try {
+			w.waitForElement(closepopup);
+			Assert.assertEquals(true, closepopup.isDisplayed());
+			w.Elementtobeclickabe(closepopup).click();
+
+		} catch (Exception e) {
+			System.out.println("pop up not closeing");
+		}
+		w.waitForElement(addpayment);
+		Assert.assertEquals(true, addpayment.isDisplayed());
+		w.Elementtobeclickabe(addpayment).click();
+
+	}
+}

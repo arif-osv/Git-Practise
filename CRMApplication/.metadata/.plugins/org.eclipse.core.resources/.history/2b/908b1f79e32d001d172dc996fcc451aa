@@ -1,0 +1,238 @@
+package parallel;
+
+import java.util.List;
+import java.util.Map;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+
+import com.qa.*;
+import com.qa.factory.DriverFactory;
+import com.qa.uat.pages.LoginPage;
+import com.qa.uat.pages.credentials;
+import com.qa.util.BaseTest;
+
+import io.cucumber.datatable.DataTable;
+import io.cucumber.java.Scenario;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+public class LoginPageSteps implements BaseTest{
+private WebDriver driver;
+	//private LoginPage loginPage = new LoginPage(DriverFactory.getDriver());
+	//private WebDriver driver;
+LoginPage login = new LoginPage(DriverFactory.getDriver());
+
+
+
+	@Given("^user is on staging url login page$")
+	public void user_is_on_login_page() {
+
+		DriverFactory.getDriver().get("https://staging.onesingleview.com");
+
+	}
+	
+		
+	@Then("user click on the shopping cart")
+	public void shoppingcart() throws InterruptedException
+	{
+		Thread.sleep(3000);
+		DriverFactory.getDriver().findElement(By.xpath("//button[@id='onetrust-accept-btn-handler']")).click();
+		Thread.sleep(3000);
+		DriverFactory.getDriver().findElement(By.xpath("//body/nav[@id='js-tlrk-nav']/section[1]/div[1]/div[1]/ul[2]/li[2]/a[1]/*[1]")).click();
+		Thread.sleep(3000);
+		DriverFactory.getDriver().findElement(By.xpath("//thead/tr[5]/th[1]/div[1]/a[1]")).click();
+		Thread.sleep(3000);
+		DriverFactory.getDriver().findElement(By.xpath("//button[@id='onetrust-accept-btn-handler']")).click();
+		Thread.sleep(10000);
+		DriverFactory.getDriver().findElement(By.xpath("//tbody/tr[@id='801']/td[2]/div[2]/quantity-select[1]/div[1]/kendo-dropdownlist[1]/span[1]/span[2]/span[1]")).click();
+		Thread.sleep(5000);
+		
+		
+		
+		WebElement element = DriverFactory.getDriver().findElement(By.xpath("//span[contains(text(),'4')]"));
+		JavascriptExecutor executor = (JavascriptExecutor)DriverFactory.getDriver();
+		executor.executeScript("arguments[0].click();", element);
+
+		Thread.sleep(3000);
+	WebElement ele=	DriverFactory.getDriver().findElement(By.xpath("//body/div[1]/div[1]/shopping-cart-app[1]/section[1]/your-order[1]/div[1]/div[1]/div[7]/button[1]"));
+	executor.executeScript("arguments[0].click();", ele);
+		
+	Thread.sleep(3000);
+		
+		
+	}
+	
+	@Then("user Enter the Address Details")
+	public void userdetails() throws InterruptedException
+	{
+		Thread.sleep(5000);
+		DriverFactory.getDriver().findElement(By.id("biFirstName")).sendKeys("Arif");
+		Thread.sleep(3000);
+		DriverFactory.getDriver().findElement(By.id("biLastName")).sendKeys("Indira");
+		Thread.sleep(3000);
+		DriverFactory.getDriver().findElement(By.id("biEmail")).sendKeys("abcded@gmail.com");
+		Thread.sleep(3000);
+		DriverFactory.getDriver().findElement(By.id("biCompany")).sendKeys("IBM");
+		Thread.sleep(3000);
+		DriverFactory.getDriver().findElement(By.id("biPhone")).sendKeys("1234123423");
+		Thread.sleep(3000);
+		DriverFactory.getDriver().findElement(By.id("biAddress")).sendKeys("BLR");
+		
+		Thread.sleep(3000);
+DriverFactory.getDriver().findElement(By.xpath("//span[@class='k-dropdown-wrap k-state-default']//input[@class='k-input']")).sendKeys("India");
+
+		Thread.sleep(3000);
+		DriverFactory.getDriver().findElement(By.id("biCity")).sendKeys("HYD");
+		Thread.sleep(3000);
+		DriverFactory.getDriver().findElement(By.id("biZipCode")).sendKeys("5222342");
+		Thread.sleep(3000);
+		DriverFactory.getDriver().findElement(By.xpath("//span[contains(text(),'Continue')]")).click();
+		Thread.sleep(5000);
+		DriverFactory.getDriver().findElement(By.xpath("//input[@id='licenseAgreementLabel']")).click();
+		Thread.sleep(3000);
+		DriverFactory.getDriver().findElement(By.xpath("//span[contains(text(),'Continue to payment')]")).click();
+		Thread.sleep(3000);
+	}
+	
+	
+	
+	
+	
+	
+	@Then("user enter the first name")
+	public void user_enter_the_first_name() {
+	    // Write code here that turns the phrase above into concrete actions
+	  //  throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("user enter the Email address")
+	public void user_enter_the_email_address() {
+	    // Write code here that turns the phrase above into concrete actions
+	 //   throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("user enter the phone number")
+	public void user_enter_the_phone_number() {
+	    // Write code here that turns the phrase above into concrete actions
+	 //   throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("user enter the country")
+	public void user_enter_the_country() {
+	    // Write code here that turns the phrase above into concrete actions
+	 //   throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("user enter the city")
+	public void user_enter_the_city() {
+	    // Write code here that turns the phrase above into concrete actions
+	   // throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("user enter the pincode")
+	public void user_enter_the_pincode() {
+	    // Write code here that turns the phrase above into concrete actions
+	   // throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("user click on the continue button")
+	public void user_click_on_the_continue_button() {
+	    // Write code here that turns the phrase above into concrete actions
+	 //   throw new io.cucumber.java.PendingException();
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+
+	@Given("^user is on uat url login page$")
+	public void user_is_on_uat_login_page() {
+
+		DriverFactory.getDriver().get("https://uat.onesingleview.com/login");
+
+	}
+
+	@When("user enters username  and PassWord {string}{string}")
+	public void user_enters_username(String username, String Password) throws InterruptedException {
+
+		login.doLogin(username, Password);
+	}
+	
+	@When("^User enters Credentials to LogIn$")
+	public void user_enters_testuser_and_Test(List<credentials>  usercredentials) throws Throwable {
+
+		//Write the code to handle Data Table
+		for (credentials credentials : usercredentials) {	
+			driver.findElement(By.name("userName")).sendKeys(credentials.getUsername());
+
+			driver.findElement(By.name("password")).sendKeys(credentials.getUsername());
+			login.signInButton.click();
+			}		
+	}
+	@When("User enters invalid credentials and Login will be unsuccessfull with error message")
+    public void entersInvalidCredentials(DataTable userTable) throws InterruptedException {
+  
+        System.out.println("Enter Credentials");         
+        
+        
+         
+        List<Map<String, String>> user = userTable.asMaps(String.class, String.class);       
+        for (Map<String, String> form : user) {
+         
+        String userName = form.get("Username");
+        System.out.println("Username :" + userName);
+        LoginPage.username.sendKeys(userName);
+
+        String passWord = form.get("Password");
+        System.out.println("Password :" + passWord);
+        LoginPage.Password.sendKeys(passWord);    
+   
+        LoginPage.signInButton.click();   
+      
+  
+      //  Assert.assertTrue(actualErrorMessage.equalsIgnoreCase(errorMessage));
+       
+        }         
+    }
+	
+	@Then("^the approve the payments (.*)$")
+	public void applevels(List<String> l)
+	{
+		System.out.println(l.size());
+		
+	}
+
+	@Then("user logout the application")
+	public void logout() throws InterruptedException {
+		login.LogoutApplication();
+		}
+
+	
+	
+}

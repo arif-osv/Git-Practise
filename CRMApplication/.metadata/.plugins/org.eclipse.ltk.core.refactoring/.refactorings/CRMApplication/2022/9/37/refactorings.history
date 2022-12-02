@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;Ttype&apos; in &apos;com.qa.uat.pages.paymentpage.dynamicElement(...)&apos; to &apos;values&apos;&#x0D;&#x0A;- Original project: &apos;CRMApplication&apos;&#x0D;&#x0A;- Original element: &apos;com.qa.uat.pages.paymentpage.dynamicElement(String, String).Ttype&apos;&#x0D;&#x0A;- Renamed element: &apos;Ttype&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;Ttype&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.qa.uat.pages{paymentpage.java[paymentpage~dynamicElement~QString;~QString;@Ttype!9079!9096!9092!9096!QString;!16!true" name="values" references="true" stamp="1662357371797" version="1.0"/>
+</session>

@@ -1,0 +1,181 @@
+package com.qa.uat.pages;
+
+import java.util.Iterator;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
+
+import com.qa.factory.DriverFactory;
+import com.qa.util.WaitFunctions;
+
+public class walletPage {
+	
+	private WebDriver driver;
+	WaitFunctions w = new WaitFunctions();
+
+	
+	public walletPage(WebDriver driver) {
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
+	}
+
+	@FindBy(xpath="//a[@href='/payments/wallet']")
+	public static WebElement wallet;
+	
+	@FindBy(xpath="//button[@class='btn createBtn ']")
+	public static WebElement CreateWallet;
+	
+	@FindBy(xpath="//label[text()='Beneficiary STC number']/following-sibling::div//*[text()='Select']")
+	public static WebElement beneficirystaticnumber;
+
+
+	@FindBy(xpath="//label[text()='Beneficiary STC number']/following-sibling::div")
+	public static WebElement benfMobNum;
+	
+	@FindBy(xpath="//label[text()='Beneficiary STC number']/following-sibling::div//*[text()='Hdfc - 969596659']")
+	public static WebElement beneficirystaticnumberone;
+	
+	@FindBy(xpath="//label[text()='Debit merchant ID']/following-sibling::div//*[text()='Select']")
+	public static WebElement DebitmerchantId;
+	
+	@FindBy(xpath="//div[contains(text(),'john')] ")
+	public static WebElement DebitmerchantIdnumber;
+	
+	@FindBy(name="amount")
+	public static WebElement amount;
+	
+	@FindBy(name="description")
+	public static WebElement description;
+	
+	@FindBy(xpath="//button[text()='Add to payments']")
+	public static WebElement submit;
+	
+	
+	
+	//*******************Add Wallet Beneficiry Details***********************//
+	
+	@FindBy(xpath="//*[@id='root']/div/main/div/div/div/div/div[2]/div/div[3]/div/div/div/form/div/div[1]/div/div[2]/div[1]/div/div[1]/div[1]")
+	public static WebElement wallettype;
+	
+	@FindBy(xpath="//div[contains(text(),'STC Wallet new')] ")
+	public static WebElement wallettypeselection;
+	
+	@FindBy(xpath="//*[@id='root']/div/main/div/div[1]/div/div/div[2]/div/div[3]/div/div/div/form/div/div[1]/div/div[3]/div/input")
+	public static WebElement BeneficiryName;
+	
+	@FindBy(xpath="//label[text()='Phone']/following-sibling::div")
+	public static WebElement country;
+	
+	 
+	@FindBy(xpath="//div[contains(text(),'+971')]")
+	public static WebElement Countrycode;
+	
+	@FindBy(xpath="//input[@name='mobile']")
+	public static WebElement mobilenumber;
+	
+	
+	@FindBy(xpath="//*[@id='root']/div/main/div/div[1]/div/div/div[2]/div/div[3]/div/div/div/form/div/div[1]/div/div[6]/div/div[1]/div/div[1]/div[1]")
+	public static WebElement SelectCategory;
+	
+	@FindBy(xpath="//div[contains(text(),'Vendor')] ")
+	public static WebElement catename;
+	
+	
+	public void EnterWalletBeneficirydetails() throws InterruptedException
+	{
+		
+		Thread.sleep(3000);
+		JavascriptExecutor executor = (JavascriptExecutor)DriverFactory.getDriver();
+		
+		executor.executeScript("arguments[0].click();", wallettype);
+		Thread.sleep(3000);
+		
+		Thread.sleep(3000);
+		executor.executeScript("arguments[0].click();", wallettypeselection);
+		
+		
+		w.waitForElement(BeneficiryName).sendKeys("Arifmda");
+		
+		w.waitForElement(country);
+		Assert.assertEquals(true, country.isDisplayed());
+		w.Elementtobeclickabe(country).click();
+		w.waitForElement(Countrycode);
+		Assert.assertEquals(true, Countrycode.isDisplayed());
+		w.Elementtobeclickabe(Countrycode).click();
+		
+		w.waitForElement(Countrycode);
+		Assert.assertEquals(true, Countrycode.isDisplayed());
+		w.Elementtobeclickabe(Countrycode).click();
+		
+		w.waitForElement(mobilenumber);
+		Assert.assertEquals(true, mobilenumber.isDisplayed());
+		w.Elementtobeclickabe(mobilenumber).click();
+	
+		w.waitForElement(SelectCategory);
+		Assert.assertEquals(true, SelectCategory.isDisplayed());
+		w.Elementtobeclickabe(SelectCategory).click();
+	
+		w.waitForElement(catename);
+		Assert.assertEquals(true, catename.isDisplayed());
+		w.Elementtobeclickabe(catename).click();
+	
+	}
+	
+	
+	public void walletbutton()
+	{
+		
+		w.waitForElement(wallet);
+		Assert.assertEquals(true, wallet.isDisplayed());
+		w.Elementtobeclickabe(wallet).click();
+		
+	}
+	public void createwallet()
+	{
+		w.waitForElement(CreateWallet);
+		Assert.assertEquals(true, CreateWallet.isDisplayed());
+		w.Elementtobeclickabe(CreateWallet).click();
+	
+	}
+	public void enterwalletdetails() throws InterruptedException
+	{
+		w.waitForElement(beneficirystaticnumber);
+		Assert.assertEquals(true, beneficirystaticnumber.isDisplayed());
+		w.Elementtobeclickabe(beneficirystaticnumber).click();
+		w.Elementtobeclickabe(beneficirystaticnumberone).click();
+	//	w.waitForElement(benfMobNum);
+		//Thread.sleep(3000);
+		//benfMobNum.click();
+		
+	//	JavascriptExecutor javascript = (JavascriptExecutor) driver; 
+		//javascript.executeScript("var element = document.querySelector(benfMobNum); element.value = '1234567891';") ;
+		
+	//	benfMobNum.sendKeys("1234567891");
+	//	w.waitForElement(benfMobNum).sendKeys("1234567");
+	
+		w.waitForElement(DebitmerchantId);
+		Assert.assertEquals(true, DebitmerchantId.isDisplayed());
+		w.Elementtobeclickabe(DebitmerchantId).click();
+		w.Elementtobeclickabe(DebitmerchantIdnumber).click();
+		
+		w.waitForElement(amount);
+		Assert.assertEquals(true, amount.isDisplayed());
+		w.Elementtobeclickabe(amount).click();
+		w.Elementtobeclickabe(amount).sendKeys("98");
+		
+		w.waitForElement(description);
+		Assert.assertEquals(true, description.isDisplayed());
+		w.Elementtobeclickabe(description).click();
+		w.Elementtobeclickabe(description).sendKeys("testing");
+	
+		w.waitForElement(submit);
+		Assert.assertEquals(true, submit.isDisplayed());
+		w.Elementtobeclickabe(submit).click();
+		
+	}
+}

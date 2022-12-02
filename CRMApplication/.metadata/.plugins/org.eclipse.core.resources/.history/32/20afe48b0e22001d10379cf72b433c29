@@ -1,0 +1,44 @@
+package playwrightexamples;
+
+import com.microsoft.playwright.Browser;
+import com.microsoft.playwright.BrowserType;
+import com.microsoft.playwright.Locator;
+import com.microsoft.playwright.Page;
+import com.microsoft.playwright.Playwright;
+
+public class sample {
+	
+	public static void main(String[] args) {
+		
+		Playwright playwright= Playwright.create();
+	Browser browser=playwright.firefox().launch(new BrowserType.LaunchOptions().setHeadless(false));
+		
+		
+		Page page= browser.newPage();
+		page.navigate("http://uat.onesingleview.com");
+		System.out.println("url is opened");
+		
+		page.type("//input[@name='userName']", "smexe2");
+		page.type("//input[@name='password']", "Osv@1234");
+		page.click("text=Login");
+		
+		
+		//click on paymenets
+		
+		page.click("//body/div[@id='root']/div[1]/div[3]/div[1]/nav[1]/ul[1]/li[4]/a[1]");
+		page.click("//a[contains(text(),'Transfers (')]");
+		
+		page.click("text=Create payment");
+		page.click("text=Local (Sarie)");
+		page.click("//div[@class='inputSelect dropdownInput']");
+		
+		page.click("//div[@title='NCB']");
+		
+		/*
+		 * Locator ele=page.locator("//div[@title='NCB']");
+		 * 
+		 * ele.first().click();
+		 */
+	}
+
+}

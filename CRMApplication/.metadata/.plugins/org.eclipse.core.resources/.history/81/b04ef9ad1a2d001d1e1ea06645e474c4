@@ -1,0 +1,43 @@
+Feature: Payment scenario's
+
+Scenario: Reviewer  create a payment and approver and executor approve the payment
+ 
+    Given user is on uat url login page
+    When user enters username  and PassWord "nameer_rev""Osv@1234"
+   Then user take screen shot
+   Then user select on the  payment link
+    Then user take screen shot
+  #  Then user click on Transfer
+    #  And user Select the transfer type Transfers
+  
+     Then user take screen shot
+    And user Select the transfer type INTERBANK
+     Then user take screen shot
+    Then user create Payment "ALRAJHI""(20400...29123)""SA0380000000608010167519"
+    Then user take screen shot
+    And user click on the Add to Payment
+      Then user take screen shot
+    Then user logout the application
+     When user enters username  and PassWord "nameer_rev""Osv@1234"
+    Then user decision is "Approve" payment through "CheckBox"
+    Then user take screen shot
+    Then user verify the status of payment
+    Then user take screen shot
+    Then user logout the application
+    When user enters username  and PassWord "smexe""Osv@1234"
+    Then user decision is "Approve" payment through "OverviewwithOTP"
+    Then user verify the status of payment
+    Then user take screen shot
+    Then user logout the application
+    When user enters username  and PassWord "smexe1""Osv@1234"
+    Then user decision is "Approve" payment through "OverviewwithOTP"
+    Then user verify the status of payment
+    Then user take screen shot
+    Then user logout the application
+    When user enters username  and PassWord "stcexe""Osv@1234"
+    Then user decision is "Approve" payment through "OverviewwithOTP"
+    Then close final payment pass or fail popup
+    Then user verify the status of payment
+    Then user take screen shot
+    Then user logout the application
+    

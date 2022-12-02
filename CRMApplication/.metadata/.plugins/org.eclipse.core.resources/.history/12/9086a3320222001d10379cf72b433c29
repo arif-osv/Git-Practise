@@ -1,0 +1,24 @@
+package playwrightexamples;
+
+import com.microsoft.playwright.Browser;
+import com.microsoft.playwright.Page;
+import com.microsoft.playwright.Playwright;
+
+public class sample {
+	
+	public static void main(String[] args) {
+		
+		Playwright playwright= Playwright.create();
+	//	Browser browser=playwright.chromium().launch();
+	//	Browser browser=playwright.firefox().launch();
+		
+		Browser browser=playwright.webkit().launch();
+		
+		
+		Page page= browser.newPage();
+		page.navigate("https://uat.onesingleview.com");
+		System.out.println("url is opened");
+		
+	}
+
+}

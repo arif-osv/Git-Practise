@@ -1,0 +1,129 @@
+package parallel;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
+
+import com.qa.base.approvers;
+import com.qa.factory.DriverFactory;
+import com.qa.uat.pages.Approvalpage;
+import com.qa.uat.pages.LoginPage;
+import com.qa.util.BaseTest;
+
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
+
+public class Paymentapprovalsteps {
+	private WebDriver driver;
+	// Screenshotpage sc= new Screenshotpage();
+	// private WebDriver driver;
+	Approvalpage approvalpage = new Approvalpage(DriverFactory.getDriver());
+	LoginPage login = new LoginPage(DriverFactory.getDriver());
+
+	@Then("Bulk payment approve")
+	public void bulkreject() throws InterruptedException
+
+	{
+		approvalpage.BulkOverviewApprove();
+	}
+
+	@Then("user click on overview button")
+	public void overview() {
+		approvalpage.bulkbutton();
+	}
+
+	@Then("user enter otp")
+	public void enterotp() throws InterruptedException {
+		approvalpage.BulkOTPapproval();
+	}
+
+	@Then("close final payment pass or fail popup")
+	public void finalpopup() throws InterruptedException {
+		approvalpage.BulkOTPFinalApproval();
+	}
+
+	@Then("user click on upcoming payments under click on bulk button")
+	public void upcomeing() {
+		approvalpage.bulkapprovebuutton();
+	}
+
+	@Then("user click on approve button")
+	public void approvebutton() {
+		approvalpage.bulkapprovesub();
+	}
+
+	@Then("user edit on created payment")
+	public void editpayment() throws InterruptedException {
+		approvalpage.editSchedulepayment();
+	}
+
+	@Then("user disable on created payment")
+	public void disablepayment() throws InterruptedException {
+		approvalpage.disableSchedulepayment();
+	}
+
+	@And("^approvals new pages$")
+	public void the_following_day_values(List<approvers> dayValues) {
+		for (approvers dayValue : dayValues) {
+			System.out.println(dayValue);
+		}
+	}
+
+	@Then("user decision is {string} payment through {string}")
+	public void paymentApprovals(String decision, String Selectingmode) throws InterruptedException {
+		if (decision.equalsIgnoreCase("Approve")) {
+			if (Selectingmode.equalsIgnoreCase("OverviewwithOTP")) {
+				// sc.takeScreenShot();
+				approvalpage.OTPApproval();
+			} else if (Selectingmode.equalsIgnoreCase("Overview")) {
+				approvalpage.OverviewApprove();
+			} else if (Selectingmode.equalsIgnoreCase("CheckBox")) {
+				// approvalpage.paymentApprove();
+			}
+		} else if (decision.equalsIgnoreCase("Reject")) {
+			if (Selectingmode.equalsIgnoreCase("Overview")) {
+
+			} else if (Selectingmode.equalsIgnoreCase("CheckBox")) {
+				approvalpage.paymentReject();
+			} else if (Selectingmode.equalsIgnoreCase("DashBoard")) {
+
+			}
+		}
+
+	}
+
+	@Then("user verify the status of payment")
+	public void status() throws InterruptedException {
+		 approvalpage.history();
+	}
+
+	@Then("user approve the {string}{string} approvel {string}{string}{string}")
+	public void na(String payment,String transactiontype,String user1, String user2, String user3) {
+		try {
+			List<String> list = new ArrayList<>();
+			list.add(user1);
+			list.add(user2);
+			list.add(user3);
+			list.stream().forEach(itm -> {
+				String name = itm.split("-")[0];
+				String type = itm.split("-")[1];
+				try {
+					login.doLogin(name, "Osv@1234");
+					approvalpage.paymentApprove(payment,transactiontype,type);
+					login.LogoutApplication();
+				
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				});
+			}
+			
+		catch(Exception e) {
+			// TODO: handle exception
+		}
+	}
+	
+}

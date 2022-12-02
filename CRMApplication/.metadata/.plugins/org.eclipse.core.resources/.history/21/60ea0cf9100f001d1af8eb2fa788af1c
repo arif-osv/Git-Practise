@@ -1,0 +1,180 @@
+package parallel;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import com.qa.factory.DriverFactory;
+import com.qa.uat.pages.Rangemanagement;
+import com.qa.uat.pages.paymentpage;
+import com.qa.util.BaseTest;
+import com.qa.util.Seleniumutility;
+
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
+
+public class Paymentpagesteps implements BaseTest{
+private WebDriver driver;
+paymentpage payments= new paymentpage(DriverFactory.getDriver());
+Screenshotpage sc= new Screenshotpage();
+Rangemanagement rm= new Rangemanagement(DriverFactory.getDriver());
+
+
+
+@FindBy(xpath="//ul[@class='flex']//li//a")
+List<WebElement> allElements;
+
+@Then("user click the {string}")
+public void clicklist(String name)
+{
+	System.out.println("The Name Value is "+name);
+	rm.range(name);
+}
+
+
+@Then("user click on rangemenagement button")
+public void rangemanagement(String name) throws InterruptedException
+{
+
+	Thread.sleep(2000);
+	rm.range(name);
+	Thread.sleep(2000);
+	//DriverFactory.getDriver().findElement(By.xpath("//a[text()='Range management']")).click();
+	
+	Thread.sleep(2000);
+	DriverFactory.getDriver().findElement(By.xpath("//*[text()='Create Country']")).click();
+	
+}
+@Then("user create one country")
+public void country() throws InterruptedException
+{
+	Thread.sleep(3000);
+	DriverFactory.getDriver().findElement(By.xpath("//label[text()='Country']//following-sibling::input")).sendKeys("India");
+
+	Thread.sleep(3000);
+	
+	DriverFactory.getDriver().findElement(By.xpath("//div[@class='sliderPopup popupContentSlideIn']/form[1]/div[1]/div[2]/div[1]/div[3]/div[1]/div[1]/div[1]/span[1]/span[1]")).click();
+Thread.sleep(3000);
+Thread.sleep(3000);
+DriverFactory.getDriver().findElement(By.xpath("//body/div[@id='root']/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[2]/div[1]/div[1]/form[1]/div[1]/div[2]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[2]/input[1]")).click();
+
+	DriverFactory.getDriver().findElement(By.xpath("//body/div[@id='root']/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[2]/div[1]/div[1]/form[1]/div[1]/div[3]/div[1]/button[2]")).click();
+	Thread.sleep(3000);
+}
+@Then("user select any one Bank Account")
+public void Bankaccount() throws InterruptedException
+{
+	Thread.sleep(3000);
+	DriverFactory.getDriver().findElement(By.xpath("//body/div[@id='root']/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[2]/div[1]/div[1]/form[1]/div[1]/div[2]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[2]/input[1]")).click();
+
+	
+}
+
+	@Then("user click on payment button")
+	public void payment()
+	{
+		payments.usercreatepay();
+	}
+	@Then("user click on Transfer")
+	public void Transfer()
+	{
+		payments.transfer();
+	}
+	@Then("User click on Schedule payments")
+	public void Schedulepayment()
+	{
+		payments.schedulepayment();
+	}
+	
+	@Then("user click on create payment link")
+	public void createpay()
+	{
+		payments.createpaymentlink();
+	}
+	@And("user Select the transfer type {string}")
+	public void Transfertype(String Transfertype) throws InterruptedException
+	{
+		payments.Transfertype(Transfertype);
+	}
+	@Then("user take screen shot")
+	public void takescreenshot()
+	{
+		sc.takeScreenShot();
+	}
+	@Then("user edit amount")
+	public void editamount() throws InterruptedException
+	{
+		payments.Editamount();
+	}
+	@Then("user should be create Schedule payment {string}{string}{string}{string}")
+	public void createschedulepayment(String bankName,String schedule, String debitNumber, String creditAccountNumber) throws InterruptedException
+	{
+		payments.SchedulePayment(bankName,schedule,debitNumber,creditAccountNumber);
+	}
+	
+	@Then("user create Payment {string}{string}{string}")
+	public void createpayment(String Bankname,String DebitNumber,String CreditAccountNumber) throws InterruptedException
+	{
+		payments.createpayment(Bankname, DebitNumber, CreditAccountNumber);
+	}
+	@Then("user Alinma create Payment {string}{string}")
+	public void ALinmacreatepayment(String Bankname,String DebitNumber) throws InterruptedException
+	{
+		payments.Alinamcreatepayment(Bankname, DebitNumber);
+	}
+	
+	@And("user select to the newly created two payments")
+	public void multiplecheckboxselection() throws InterruptedException
+	{
+		Thread.sleep(10000);
+		DriverFactory.getDriver().findElement(By.xpath("//div[@class='tableBody']//div[2]/div[1]/div/div/input")).click();
+		Thread.sleep(4000);
+		
+	WebElement element=	DriverFactory.getDriver().findElement(By.xpath("//div[@class='tableBody']//div[3]/div[1]/div/div/input"));
+		Thread.sleep(4000);
+		
+		JavascriptExecutor executor = (JavascriptExecutor)DriverFactory.getDriver();
+		executor.executeScript("arguments[0].click();", element);
+		Thread.sleep(4000);
+		
+	}
+	 @Then("user see the remove button is displaying and click on remove button")
+	 public void removebutton() throws InterruptedException
+	 {
+
+			Thread.sleep(30000);
+			DriverFactory.getDriver().findElement(By.xpath("//div[@class='footerButton']/div[2]/span[2]")).click();
+			Thread.sleep(2000);
+			DriverFactory.getDriver().findElement(By.xpath("//div[@class='isPaymentsViewMore']/div[1]/div[2]/button")).click();
+			Thread.sleep(3000);
+				
+	 }
+	 
+	@Then("user verify International payment is not allowed for selected debit account")
+	public void Alinmaverifytext()
+	{
+		
+	}
+	@And("user click on the Add to Payment button")
+	public void Addtopayment()
+	{
+		payments.Addtopaymentbutton();
+	}
+	@And("user click on the Add to Payment")
+	public void AddtopaymentDirect() throws InterruptedException
+	{
+		payments.Addtopaymentbuttondirect();
+	}
+	@And("user create bulk amount {string}{string}{string}")
+	public void Bulkamountcreate(String Bankname,String DebitNumber,String CreditAccountNumber) throws InterruptedException
+	{
+		payments.bulkamount(Bankname, DebitNumber, CreditAccountNumber);
+			
+	}
+
+}

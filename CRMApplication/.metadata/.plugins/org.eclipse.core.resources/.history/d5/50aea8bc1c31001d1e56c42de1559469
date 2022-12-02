@@ -1,0 +1,31 @@
+package com.qa.util;
+
+import java.util.List;
+import java.util.function.Predicate;
+
+import org.apache.velocity.runtime.directive.Foreach;
+import org.openqa.selenium.WebElement;
+
+public class Seleniumutility {
+	
+	public void clickanelementinlistcondition(List<WebElement> element, Predicate<WebElement> condition) {
+		WebElement elements = element.stream().parallel().filter(condition).findFirst()
+				.orElseThrow(() -> new RuntimeException("Element with not present"));
+		elements.click();
+	}
+	public static  void clickanelementinlist(List<WebElement> element, String menuitem) {
+		
+		
+		element.forEach(itm -> {System.out.println(itm.getText());});
+		System.out.println("The Menu item value is "+menuitem);
+		
+		element.stream().parallel().filter(e -> e.getText().contains(menuitem)).findFirst()
+				.ifPresent(WebElement::click );
+	}
+	
+	
+	
+	
+	
+
+}

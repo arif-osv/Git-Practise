@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.tablesorter.min.js"></script>
+<script src="js/Chart.min.js"></script>
+<script src="js/moment.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
+<link rel="stylesheet" href="css/cucumber.css" type="text/css"/>
+<link rel="stylesheet" href="css/font-awesome.min.css"/>
+<link rel="shortcut icon" href="images/favicon.png"/>
+
+<script>
+$(document).ready(function() {
+    // this will tell tablesorter to try looking for the data-value attribute
+    // if present, it'll sort by that instead
+    // otherwise, it'll sort by the text content of the table cell
+    $("#tablesorter").tablesorter({
+        textAttribute: 'data-value',
+        // ignores the first row of the header, the 'scenario', 'steps', since
+        // sorting those doesn't make sense
+        selectorHeaders: '> thead tr:not(.dont-sort) th',
+        // use a stable sort
+        sortStable: true
+    });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<title>Cucumber Reports  - Steps Overview</title>
+
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navigation">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse">
+      <p class="navbar-text navbar-left">Cucumber Report</p>
+      <ul class="nav navbar-nav navbar-right">
+        <li role="presentation" ><a href="overview-features.html">Features</a></li>
+        <li role="presentation" ><a href="overview-tags.html">Tags</a></li>
+        <li role="presentation"     class="active" ><a href="overview-steps.html">Steps</a></li>
+        <li role="presentation" ><a href="overview-failures.html">Failures</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div class="container-fluid">
+  <div class="col-md-5 col-md-offset-1">
+
+<table class="table table-bordered" id="build-info">
+  <thead>
+    <tr>
+      <th>Project</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="info">
+      <td>No Name (add projectName to cucumber-reporting.properties)</td>
+      <td>02 Dec 2022, 10:26</td>
+    </tr>
+  </tbody>
+</table>
+
+  </div>
+  <div class="col-md-3 col-md-offset-2">
+  </div>
+</div>
+
+
+<div id="report-lead" class="container-fluid">
+  <div class="col-md-10 col-md-offset-1">
+    <h2>Steps Statistics</h2>
+      <p>The following graph shows step statistics for this build. Below list is based on results.
+ step does not provide information about result then is not listed below.
+ Additionally @Before and @After are not counted because they are part of the scenarios, not steps.</p>
+  </div>
+</div>
+
+<div class="container-fluid" id="report">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <table id="tablesorter" class="stats-table table-hover">
+
+        <thead>
+          <tr class="header">
+            <th>Implementation</th>
+            <th>Occurrences</th>
+            <th>Average duration</th>
+            <th>Max duration</th>
+            <th>Total durations</th>
+            <th>Ratio</th>
+          </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+              <td class="location">parallel.ApplicationHooks.getProperty()</td>
+              <td>7</td>
+              <td class="duration" data-value="2769742">0.002</td>
+              <td class="duration" data-value="2769742">0.009</td>
+              <td class="duration" data-value="19388200">0.019</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">parallel.ApplicationHooks.launchBrowser()</td>
+              <td>7</td>
+              <td class="duration" data-value="1892667642">1.892</td>
+              <td class="duration" data-value="1892667642">4.333</td>
+              <td class="duration" data-value="13248673500">13.248</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">parallel.ApplicationHooks.quitBrowser()</td>
+              <td>7</td>
+              <td class="duration" data-value="544285014">0.544</td>
+              <td class="duration" data-value="544285014">0.785</td>
+              <td class="duration" data-value="3809995100">3.809</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">parallel.ApplicationHooks.setUp(io.cucumber.java.Scenario)</td>
+              <td>7</td>
+              <td class="duration" data-value="1221628">0.001</td>
+              <td class="duration" data-value="1221628">0.002</td>
+              <td class="duration" data-value="8551400">0.008</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">parallel.ApplicationHooks.tearDown(io.cucumber.java.Scenario)</td>
+              <td>7</td>
+              <td class="duration" data-value="278235914">0.278</td>
+              <td class="duration" data-value="278235914">0.530</td>
+              <td class="duration" data-value="1947651400">1.947</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">parallel.LoginPageSteps.logout()</td>
+              <td>5</td>
+              <td class="duration" data-value="2530003420">2.530</td>
+              <td class="duration" data-value="2530003420">6.334</td>
+              <td class="duration" data-value="12650017100">12.650</td>
+              <td class="failed">40.00%</td>
+            </tr>
+            <tr>
+              <td class="location">parallel.LoginPageSteps.user_enters_username(java.lang.String,java.lang.String)</td>
+              <td>9</td>
+              <td class="duration" data-value="20171952500">20.171</td>
+              <td class="duration" data-value="20171952500">48.509</td>
+              <td class="duration" data-value="181547572500">3:1.547</td>
+              <td class="failed">88.89%</td>
+            </tr>
+            <tr>
+              <td class="location">parallel.LoginPageSteps.user_is_on_uat_login_page()</td>
+              <td>8</td>
+              <td class="duration" data-value="11126482212">11.126</td>
+              <td class="duration" data-value="11126482212">27.655</td>
+              <td class="duration" data-value="89011857700">1:29.011</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">parallel.Paymentpagesteps.Approvalflow(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)</td>
+              <td>2</td>
+              <td class="duration" data-value="134730889000">2:14.730</td>
+              <td class="duration" data-value="134730889000">4:29.461</td>
+              <td class="duration" data-value="269461778000">4:29.461</td>
+              <td class="failed">50.00%</td>
+            </tr>
+            <tr>
+              <td class="location">parallel.Paymentpagesteps.Paymentdownload()</td>
+              <td>1</td>
+              <td class="duration" data-value="10573654300">10.573</td>
+              <td class="duration" data-value="10573654300">10.573</td>
+              <td class="duration" data-value="10573654300">10.573</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">parallel.Paymentpagesteps.Spiltpayment(java.lang.String,java.lang.String,java.lang.String)</td>
+              <td>2</td>
+              <td class="duration" data-value="545400">0.000</td>
+              <td class="duration" data-value="545400">0.001</td>
+              <td class="duration" data-value="1090800">0.001</td>
+              <td class="failed">0.00%</td>
+            </tr>
+            <tr>
+              <td class="location">parallel.Paymentpagesteps.createpayment(java.lang.String,java.lang.String,java.lang.String,java.lang.String)</td>
+              <td>5</td>
+              <td class="duration" data-value="43454413920">43.454</td>
+              <td class="duration" data-value="43454413920">58.145</td>
+              <td class="duration" data-value="217272069600">3:37.272</td>
+              <td class="failed">60.00%</td>
+            </tr>
+            <tr>
+              <td class="location">parallel.Paymentpagesteps.payment(java.lang.String)</td>
+              <td>5</td>
+              <td class="duration" data-value="11540324920">11.540</td>
+              <td class="duration" data-value="11540324920">20.292</td>
+              <td class="duration" data-value="57701624600">57.701</td>
+              <td class="failed">40.00%</td>
+            </tr>
+            <tr>
+              <td class="location">parallel.Paymentpagesteps.quickpayment()</td>
+              <td>2</td>
+              <td class="duration" data-value="6554846400">6.554</td>
+              <td class="duration" data-value="6554846400">6.624</td>
+              <td class="duration" data-value="13109692800">13.109</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">parallel.Paymentpagesteps.sharedetails()</td>
+              <td>1</td>
+              <td class="duration" data-value="13741651400">13.741</td>
+              <td class="duration" data-value="13741651400">13.741</td>
+              <td class="duration" data-value="13741651400">13.741</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">parallel.Paymentpagesteps.takescreenshot()</td>
+              <td>3</td>
+              <td class="duration" data-value="301242433">0.301</td>
+              <td class="duration" data-value="301242433">0.455</td>
+              <td class="duration" data-value="903727300">0.903</td>
+              <td class="failed">66.67%</td>
+            </tr>
+            <tr>
+              <td class="location">parallel.Paymentpagesteps.verifypaymentdetails()</td>
+              <td>2</td>
+              <td class="duration" data-value="5727242550">5.727</td>
+              <td class="duration" data-value="5727242550">11.454</td>
+              <td class="duration" data-value="11454485100">11.454</td>
+              <td class="failed">50.00%</td>
+            </tr>
+            <tr>
+              <td class="location">parallel.SupportDashboardSteps.clickSettings()</td>
+              <td>2</td>
+              <td class="duration" data-value="21292097250">21.292</td>
+              <td class="duration" data-value="21292097250">31.270</td>
+              <td class="duration" data-value="42584194500">42.584</td>
+              <td class="failed">0.00%</td>
+            </tr>
+        </tbody>
+
+        <tfoot class="total">
+          <tr>
+            <td>18</td>
+            <td>82</td>
+            <td class="duration">11.451</td>
+            <td class="duration">4:29.461</td>
+            <td class="duration">15:39.047</td>
+            <td>Totals</td>
+          </tr>
+        </tfoot>
+
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<nav class="navbar navbar-default" id="footer">
+  <div class="container-fluid">
+    <p class="navbar-text navbar-right">
+        <small>generate Cucumber HTML reports via:&nbsp;</small>
+        <a class="navbar-link" href="https://github.com/jenkinsci/cucumber-reports-plugin">Jenkins Plugin</a> |
+        <a class="navbar-link" href="https://github.com/damianszczepanik/cucumber-reporting">Standalone</a> |
+        <a class="navbar-link" href="https://github.com/damianszczepanik/cucumber-sandwich">Sandwich</a> |
+        <a class="navbar-link" href="https://github.com/damianszczepanik/maven-cucumber-reporting">Maven</a>
+        &nbsp;&nbsp;
+    </p>
+  </div>
+</nav>
+
+</body>
+</html>
